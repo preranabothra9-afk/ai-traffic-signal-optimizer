@@ -149,17 +149,28 @@ def test_auto_mode():
     apply_auto_mode()
     return system_state
 
+
+
+@app.get("/mode/emergency/clear")
+def clear_emergency():
+    system_state["emergency_lane"] = None
+    system_state["mode"] = "AUTO"
+
+    # reset all lanes first
+    for lane in system_state["lanes"]:
+        system_state["lanes"][lane]["signal"] = "red"
+        system_state["lanes"][lane]["green_time"] = 0
+
+    # immediately re-apply AUTO logic
+    apply_auto_mode()
+
+    return system_state
+
 @app.get("/mode/emergency/{lane}")
 def trigger_emergency(lane: str):
     apply_emergency_mode(lane)
     return system_state
 
-@app.get("/mode/emergency/clear")
-def clear_emergency():
-    system_state["emergency_lane"] = None
-    # re-run auto mode to restore normal behavior
-    apply_auto_mode()
-    return system_state
 
 @app.post("/traffic/update")
 def update_traffic_counts(counts: Dict[str, int]):
