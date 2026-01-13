@@ -30,6 +30,8 @@ system_state = {
 LANE_ORDER = ["north", "east", "south", "west"]
 current_lane_index = 0
 FIXED_GREEN_TIME = 30
+MIN_GREEN = 10
+MAX_GREEN = 60
 
 # --------------------
 # Normal mode logic
@@ -50,6 +52,34 @@ def apply_normal_mode():
 
     # Move to next lane
     current_lane_index = (current_lane_index + 1) % len(LANE_ORDER)
+   
+def apply_smart_mode():
+    lanes = system_state["lanes"]
+
+    # safety check
+    if not lanes:
+        return
+
+    max_count = max(lanes[l]["count"] for l in lanes)
+
+    # handle tie cases
+    busiest_lanes = [l for l in lanes if lanes[l]["count"] == max_count]
+    busiest_lane = busiest_lanes[0]
+
+    # reset all lanes
+    for lane in lanes:
+        lanes[lane]["signal"] = "red"
+        lanes[lane]["green_time"] = 0
+
+    # calculate green time
+    if max_count == 0:
+        green_time = MIN_GREEN
+    else:
+        green_time = min(MAX_GREEN, max(MIN_GREEN, max_count * 3))
+
+    # activate busiest lane
+    lanes[busiest_lane]["signal"] = "green"
+    lanes[busiest_lane]["green_time"] = green_time
 
 # --------------------
 # API endpoints
@@ -70,4 +100,10 @@ def get_state():
 def test_normal_mode():
     system_state["mode"] = "NORMAL"
     apply_normal_mode()
+    return system_state
+
+@app.get("/mode/smart/test")
+def test_smart_mode():
+    system_state["mode"] = "SMART"
+    apply_smart_mode()
     return system_state
