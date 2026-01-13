@@ -6,14 +6,19 @@ const LaneCard = ({ name, count, signal, greenTime }) => {
 
       <p><strong>Vehicles:</strong> {count}</p>
 
-      <div className="signal-box">
-        <span className={`light red ${signal === "red" ? "on" : ""}`}></span>
-        <span className={`light green ${signal === "green" ? "on" : ""}`}></span>
+      <div className="signal">
+        {signal === "green" ? (
+            <span className="green-dot"></span>
+        ) : (
+            <span className="red-dot"></span>
+        )}
       </div>
 
+
       {signal === "green" && (
-        <p className="green-time">Green Time: {greenTime}s</p>
-      )}
+        <p>Green Time: {greenTime}s</p>
+       )}
+
     </div>
   );
 };
