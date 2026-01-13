@@ -3,16 +3,19 @@ AI Traffic Signal Optimiser - Vehicle Detection Module
 Detects vehicles in traffic video and counts them by lane direction.
 """
 
+import requests
+import os
 import time
 import cv2
 from ultralytics import YOLO
 
-
+ 
 def main():
     print("Loading YOLOv8 model...")
     model = YOLO("yolov8n.pt")
-
-    VIDEO_PATH = "Sample_video.mp4"
+    
+    BASE_DIR= os.path.dirname(__file__)
+    VIDEO_PATH = os.path.join(BASE_DIR,"Sample_video.mp4")
     cap = cv2.VideoCapture(VIDEO_PATH)
 
     if not cap.isOpened():
@@ -111,6 +114,15 @@ def main():
                 "west": counts["west"]
             })
             last_print_time = current_time
+        try:
+         requests.post(
+            "http://127.0.0.1:8000/traffic/update",
+            json=counts,
+            timeout=1
+        )
+        except Exception as e:
+         print("Backend not reachable:", e)
+
 
         cv2.imshow("AI Traffic Signal Optimiser - Vehicle Detection", frame)
 
