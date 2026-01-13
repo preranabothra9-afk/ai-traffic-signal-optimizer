@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+.app {
+  padding: 20px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.lane-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.lane-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.signal-box {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.light {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.light.red {
+  background: red;
+}
+
+.light.green {
+  background: green;
+}
+
+.light.on {
+  opacity: 1;
+}
+
+.green-time {
+  color: green;
+  font-weight: bold;
+}
+
+.lane-card.active {
+  border: 2px solid #22c55e;
+  box-shadow: 0 0 12px rgba(34,197,94,0.4);
+}
+
