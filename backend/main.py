@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from typing import Dict
 
 app = FastAPI()
 
@@ -159,3 +160,16 @@ def clear_emergency():
     # re-run auto mode to restore normal behavior
     apply_auto_mode()
     return system_state
+
+@app.post("/traffic/update")
+def update_traffic_counts(counts: Dict[str, int]):
+    lanes = system_state["lanes"]
+
+    for lane in lanes:
+        if lane in counts:
+            lanes[lane]["count"] = counts[lane]
+
+    return {
+        "status": "updated",
+        "lanes": system_state["lanes"]
+    }
