@@ -81,6 +81,23 @@ def apply_smart_mode():
     lanes[busiest_lane]["signal"] = "green"
     lanes[busiest_lane]["green_time"] = green_time
 
+SMART_THRESHOLD = 15  # vehicles
+
+def apply_auto_mode():
+    lanes = system_state["lanes"]
+
+    if not lanes:
+        return
+
+    max_count = max(lanes[l]["count"] for l in lanes)
+
+    if max_count >= SMART_THRESHOLD:
+        system_state["mode"] = "SMART"
+        apply_smart_mode()
+    else:
+        system_state["mode"] = "NORMAL"
+        apply_normal_mode()
+
 # --------------------
 # API endpoints
 # --------------------
@@ -106,4 +123,9 @@ def test_normal_mode():
 def test_smart_mode():
     system_state["mode"] = "SMART"
     apply_smart_mode()
+    return system_state
+
+@app.get("/mode/auto/test")
+def test_auto_mode():
+    apply_auto_mode()
     return system_state
