@@ -55,9 +55,6 @@ export default function ControlPanel() {
         {stats.mode} MODE
       </button>
 
-      <button className="w-full bg-gray-600 py-2 rounded-lg">
-        Manual Control
-      </button>
     </div>
   );
 }

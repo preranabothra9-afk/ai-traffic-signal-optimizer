@@ -13,7 +13,6 @@ It uses:
 ## Features
 - Live vehicle count per lane
 - Automatic mode switching (Normal / Smart)
-- Manual Normal Mode control
 - Emergency override
 - Web-based live dashboard
 
