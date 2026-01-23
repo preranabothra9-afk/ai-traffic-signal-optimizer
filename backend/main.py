@@ -123,6 +123,14 @@ def emergency(data: Dict[str, str]):
     apply_emergency_mode(lane)
     return {"status": "emergency", "lane": lane}
 
+@app.post("/emergency/clear")
+def clear_emergency():
+    system_state["mode"] = "AUTO"
+    system_state["emergency_lane"] = None
+    apply_auto_mode()
+    return {"status": "cleared"}
+
+
 # ===================== SIMULATED TRAFFIC =====================
 def simulate_traffic():
     while True:
