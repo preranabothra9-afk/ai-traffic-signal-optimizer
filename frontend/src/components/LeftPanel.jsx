@@ -22,7 +22,7 @@ export default function LeftPanel() {
         >
           <h2 className="text-lg font-semibold">{lane.lane} Lane</h2>
           <p>Vehicles: {lane.vehicles}</p>
-          <p>Wait Time: {lane.wait_time}s</p>
+          <p>Green Time: {lane.wait_time}s</p>
           <p>Signal: {lane.signal}</p>
         </div>
       ))}

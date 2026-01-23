@@ -1,8 +1,8 @@
 const lanes = [
-  { name: "North", flow: "High", vehicles: 15, wait: "10s", color: "green" },
-  { name: "East", flow: "Moderate", vehicles: 8, wait: "25s", color: "yellow" },
-  { name: "South", flow: "Congested", vehicles: 22, wait: "45s", color: "red" },
-  { name: "West", flow: "Low", vehicles: 5, wait: "15s", color: "blue" },
+  { name: "North", flow: "High", vehicles: 15, green: "10s", color: "green" },
+  { name: "East", flow: "Moderate", vehicles: 8, green: "25s", color: "yellow" },
+  { name: "South", flow: "Congested", vehicles: 22, green: "45s", color: "red" },
+  { name: "West", flow: "Low", vehicles: 5, green: "15s", color: "blue" },
 ];
 
 export default function LanePanel() {
@@ -17,7 +17,7 @@ export default function LanePanel() {
           <h2 className="text-lg font-semibold">{lane.name} Lane</h2>
           <p>Traffic Flow: <b>{lane.flow}</b></p>
           <p>Vehicles: {lane.vehicles}</p>
-          <p>Wait Time: {lane.wait}</p>
+          <p>Green Time: {lane.wait}</p>
         </div>
       ))}
     </div>
