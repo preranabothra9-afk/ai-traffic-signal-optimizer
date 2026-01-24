@@ -8,9 +8,9 @@ http://13.49.145.10:5173/
 # Submitted by:
 
 IEEE Project Report
-Swapnil Arya
-Prerana Bothra
-Tathya Varma
+- Swapnil Arya
+- Prerana Bothra
+- Tathya Varma
 
 ------------------------------------------------------------
 
