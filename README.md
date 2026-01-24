@@ -1,12 +1,15 @@
 # AI TRAFFIC SIGNAL OPTIMIZER #
 # Using Computer Vision and Machine Learning #
 
-IEEE Project Report
+# LIVE DEMO LINK
+
+http://13.49.145.10:5173/
 
 # Submitted by:
 
+IEEE Project Report
 Swapnil Arya
-Sneha Bothra
+Prerana Bothra
 Tathya Varma
 
 ------------------------------------------------------------
