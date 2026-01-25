@@ -133,9 +133,9 @@ Camera / Video → CV Module → Backend API → Frontend Dashboard → Signal C
 - Real‑time traffic density detection
 - Automatic signal timing optimization
 - Signal modes:
-  - NORMAL
-  - SMART
-  - EMERGENCY
+  - AUTO (Auto-Switch)
+  - SMART (Auto-Switch)
+  - EMERGENCY (Manual)
 - Emergency lane selection via UI
 - Emergency cancel functionality
 - Live signal status display
